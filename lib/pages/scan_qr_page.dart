@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
-class ScanCodePage extends StatefulWidget {
-  const ScanCodePage({super.key});
+class ScanQQCodePage extends StatefulWidget {
+  const ScanQQCodePage({super.key});
 
   @override
-  State<ScanCodePage> createState() => _ScanCodePageState();
+  State<ScanQQCodePage> createState() => _ScanQQCodePageState();
 }
 
-class _ScanCodePageState extends State<ScanCodePage> {
+class _ScanQQCodePageState extends State<ScanQQCodePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Scan QR Code"),
+        actions: [
+          IconButton(onPressed: () {
+            Navigator.popAndPushNamed(context, "/generate");
+          }, icon: const Icon(
+            Icons.qr_code
+          ))
+        ],
+      ),
+      body: MobileScanner(
+        onDetect: (capture) {
+            
+        },
+      ),
+    );
   }
 }
