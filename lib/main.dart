@@ -1,5 +1,5 @@
+import 'package:ar_worksheets/widgets/scan_qr_fab.dart';
 import 'package:flutter/material.dart';
-import 'pages/scan_qr_page.dart'; // Import the ScanQrPage
 
 void main() {
   runApp(const MyApp());
@@ -31,14 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _navigateToScanQrPage() {
-    // Navigate to ScanQrPage when the button is pressed
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const ScanQQCodePage()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,11 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _navigateToScanQrPage,
-        tooltip: 'Scan QR Code',
-        child: const Icon(Icons.qr_code),
-      ),
+      floatingActionButton: const ScanQrFab(),
     );
   }
 }
