@@ -11,6 +11,10 @@ class ScanQQCodePage extends StatefulWidget {
 
 class _ScanQQCodePageState extends State<ScanQQCodePage> {
   String errorMessage = '';
+  MobileScannerController cameraController = MobileScannerController(
+    facing: CameraFacing.front, // This specifies the front camera
+    torchEnabled: false,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +56,14 @@ class _ScanQQCodePageState extends State<ScanQQCodePage> {
                   });
                 }
               },
+              errorBuilder: (context, error, child) {
+                return Center(
+                  child: Text(
+                    'Error initializing camera: $error',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                );
+              },
             ),
           ),
           if (errorMessage.isNotEmpty)
@@ -65,5 +77,11 @@ class _ScanQQCodePageState extends State<ScanQQCodePage> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    cameraController.dispose();
+    super.dispose();
   }
 }
